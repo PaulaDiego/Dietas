@@ -1,0 +1,28 @@
+using Dietas.Repository;
+using Dietas.Service;
+using Microsoft.Practices.Unity;
+using System.Web.Http;
+using Unity.WebApi;
+
+namespace Dietas
+{
+    public static class UnityConfig
+    {
+        public static void RegisterComponents()
+        {
+			var container = new UnityContainer();
+            
+            // register all your components with the container here
+            // it is NOT necessary to register your controllers
+            
+            // e.g. container.RegisterType<ITestService, TestService>();
+            
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            container.RegisterType<IPacientesRepository, PacientesRepository>();
+            container.RegisterType<IPacientesService, PacientesService>();
+            container.RegisterType<IDietasRepository, DietasRepository>();
+            container.RegisterType<IDietasService, DietasService>();
+
+        }
+    }
+}

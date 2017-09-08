@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 
 namespace Dietas.Models
 {
@@ -20,6 +21,8 @@ namespace Dietas.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        [ThreadStatic]
+        public static ApplicationDbContext applicationDbContext;
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +32,8 @@ namespace Dietas.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Dietas.Paciente> Pacientes { get; set; }
+        public System.Data.Entity.DbSet<Dietas.Dieta> Dietas { get; set; }
     }
 }
