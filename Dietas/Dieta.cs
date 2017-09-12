@@ -12,6 +12,7 @@ namespace Dietas
         public String Descripcion { get; set; }
         public int CaloriasDia { get; set; }
         public int Dureza { get; set; }
-
+        public int Duracion { get; set; }
+        public DateTime FechaCreacion { get; set; }
     }
 }

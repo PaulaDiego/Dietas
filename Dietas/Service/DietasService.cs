@@ -21,6 +21,7 @@ namespace Dietas.Service
                 {
                     try
                     {
+                        Dieta.FechaCreacion = DateTime.Now;
                         Dieta = DietasRepository.Create(Dieta);
                         context.SaveChanges();
                         dbContextTransaction.Commit();
